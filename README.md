@@ -1,5 +1,6 @@
 # database
 GOAL: build a simple implementation of a signature indexed file, including applications to create such files, insert tuples into them, and search for tuples based on partial-match retrieval queries.
+
 command:
 1.create RelName SigType #tuples #attrs 1/pF
 The following example of using create makes a relation called abc where each tuple has 4 attributes and the indexing has a false match probability of 1/100. The relation can hold up to 10000 tuples (it can actually hold more, but only the first 10000 will be indexed via the bit-sliced signatures).
