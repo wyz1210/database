@@ -1,3 +1,7 @@
+#tar files
+*.tar
+#zip files
+*.zip
 # Prerequisites
 *.d
 
