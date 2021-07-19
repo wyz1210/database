@@ -1,7 +1,46 @@
-# database
+**#structure**
+Relations
+In our system, a relation R is represented by five physical files:
+
+R.info containing global information such as
+
+the number of attributes and size of each tuple
+the number of data pages and number of tuples
+the base type of signatures (simc or catc)
+the sizes of the various kinds of signatures
+the number of signatures and signature pages
+etc. etc. etc.
+The R.info file contains a copy of the RelnParams structure given in the reln.h file (see below).
+
+R.data containing data pages, where each data page contains
+
+a count of the number of tuples in the page
+the tuples (as comma-separated character sequences)
+Each data page has a capacity of c tuples. If there are n tuples then there will be b = ⌈n/c⌉ pages in the data file. All pages except the last are full. Tuples are never deleted.
+
+R.tsig containing tuple signatures, where each page contains
+
+a count of the number of signatures in the page
+the signatures themselves (as bit strings)
+Each tuple signature is formed by incorporating the codewords from each attribute in the tuple. How this is done differs between SIMC and CATC, but the overall result is a single m-bit long signature. If there are n tuples in the relation, there will be n tuple signatures, in bt pages. All tuple signature pages except the last are full.
+
+R.psig containing page signatures, where each page contains
+
+a count of the number of signatures in the page
+the signatures themselves (as bit strings)
+Page signatures are much larger than tuple signatures, and are formed by incorporating the codewords of all attribute values in all tuples in the page. How this is done differs between SIMC and CATC, but the result is a single mp-bit long signature There is one page signature for each page in the data file.
+
+R.bsig containing bit-sliced signatures, where each page contains
+
+a count of the number of signatures in the page
+the bit-slices themselves (as bit strings)
+Bit-slices give an alternate 90o-rotated view of page signatures. If there are b data pages, then each bit-slice is b-bits long. If page signatures are pm bits long, then there are pm bit-slices.
+
+
+**# database**
 GOAL: build a simple implementation of a signature indexed file, including applications to create such files, insert tuples into them, and search for tuples based on partial-match retrieval queries.
 
-**command:**
+****command:****
 
 1.create RelName SigType #tuples #attrs 1/pF
 The following example of using create makes a relation called abc where each tuple has 4 attributes and the indexing has a false match probability of 1/100. The relation can hold up to 10000 tuples (it can actually hold more, but only the first 10000 will be indexed via the bit-sliced signatures).
