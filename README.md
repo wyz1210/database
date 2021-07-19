@@ -89,3 +89,6 @@ You can use it to help with debugging, by making sure that the files have been c
 Writes all tuples from the relation RelName, one per line, to standard output. This is like an inverse of the insert command. Tuples are dumped in a form that could be used by insert to rebuild a database.
 
 You can use it to help with debugging, by making sure that the tuples are inserted correctly into the data file.
+
+tricks:
+1. for the code word of the page signature, we need to set ceil(x/2c) bits to 1 where x is the length and c is the number of tuples in the page. So that when the page is full, we'll have roughly half the bits in each code word set to 1.
