@@ -1,3 +1,8 @@
+
+**goal:**
+build a simple implementation of a signature indexed file, including applications to create such files, insert tuples into them, and search for tuples based on partial-match retrieval queries.
+
+
 **#structure**
 Relations
 In our system, a relation R is represented by five physical files:
@@ -36,9 +41,6 @@ a count of the number of signatures in the page
 the bit-slices themselves (as bit strings)
 Bit-slices give an alternate 90o-rotated view of page signatures. If there are b data pages, then each bit-slice is b-bits long. If page signatures are pm bits long, then there are pm bit-slices.
 
-
-**# database**
-GOAL: build a simple implementation of a signature indexed file, including applications to create such files, insert tuples into them, and search for tuples based on partial-match retrieval queries.
 
 ****command:****
 
